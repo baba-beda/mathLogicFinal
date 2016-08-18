@@ -4,20 +4,20 @@ package parser;
 import expression.*;
 }
 
-expression returns [Expression value]   : disjunction                     {$value = new Expression("disj", $disjunction.value);}
-                                        | disjunction IMPLIES expression  {$value = new Expression("impl", $disjunction.value, $expression.value);};
+expression returns [Expression value]   : disjunction                     {$value = $disjunction.value;}
+                                        | disjunction IMPLIES expression  {$value = new Implication($disjunction.value, $expression.value);};
 
-disjunction returns [Disjunction value] : conjunction                     {$value = new Disjunction("conj", $conjunction.value);}
-                                        | conjunction OR disjunction      {$value = new Disjunction("disj", $conjunction.value, $disjunction.value);};
+disjunction returns [Expression value] : conjunction                     {$value = $conjunction.value;}
+                                        | conjunction OR disjunction      {$value = new Disjunction($conjunction.value, $disjunction.value);};
 
-conjunction returns [Conjunction value] : negation                        {$value = new Conjunction("neg", $negation.value);}
-                                        | negation AND conjunction        {$value = new Conjunction("conj", $negation.value, $conjunction.value);};
+conjunction returns [Expression value] : negation                        {$value = $negation.value;}
+                                        | negation AND conjunction        {$value = new Conjunction($negation.value, $conjunction.value);};
 
-negation returns [Negation value]       : variable                        {$value = new Negation("var", $variable.value);}
-                                        | NOT negation                    {$value = new Negation("neg", $negation.value);}
-                                        | OB expression CB                {$value = new Negation("expr", $expression.value);};
+negation returns [Expression value]       : variable                        {$value = $variable.value;}
+                                        | NOT negation                    {$value = new Negation($negation.value);}
+                                        | OB expression CB                {$value = $expression.value;};
 
-variable returns [Variable value]       : VAR                             {$value = new Variable($VAR.text);};
+variable returns [Expression value]       : VAR                             {$value = new Variable($VAR.text);};
 
 IMPLIES : '->';
 OR : '|';

@@ -1,6 +1,8 @@
+import expression.Expression;
 import org.antlr.v4.runtime.*;
 import parser.LogicLexer;
 import parser.LogicParser;
+import utils.Axioms;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -15,6 +17,9 @@ public class Main {
         LogicLexer lexer = new LogicLexer(is);
         TokenStream ts = new CommonTokenStream(lexer);
         LogicParser parser = new LogicParser(ts);
-        System.out.println(parser.expression().value);
+        Expression res = parser.expression().value;
+        int a = Axioms.isAxiom(res);
+        System.out.println(res + " " + a);
+
     }
 }

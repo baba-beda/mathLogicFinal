@@ -1,22 +1,20 @@
 package expression;
 
-import utils.ExpressionType;
-
 /**
- * Created by baba_beda on 8/17/16.
+ * Created by baba_beda on 8/18/16.
  */
-public class Conjunction extends Expression {
+public class Implication extends Expression {
     private Expression left;
     private Expression right;
 
-    public Conjunction(Expression left, Expression right) {
+    public Implication(Expression left, Expression right) {
         this.left = left;
         this.right = right;
     }
 
     @Override
     public String toString() {
-        return "(" + left.toString() + "&" + right.toString() + ")";
+        return "(" + left.toString() + "->" + right.toString() + ")";
     }
 
     public Expression getLeft() {
@@ -32,7 +30,7 @@ public class Conjunction extends Expression {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Conjunction that = (Conjunction) o;
+        Implication that = (Implication) o;
 
         return left.equals(that.left) && right.equals(that.right);
 

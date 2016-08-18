@@ -1,35 +1,30 @@
 package expression;
 
+import utils.ExpressionType;
+
 /**
  * Created by baba_beda on 8/17/16.
  */
 public class Disjunction extends Expression {
-    String type;
-    Expression left;
-    Expression right;
+    private Expression left;
+    private Expression right;
 
-    public Disjunction(String type, Expression inside) {
-        this.type = type;
-        this.left = inside;
-    }
-    public Disjunction(String type, Expression left, Expression right) {
-        this.type = type;
+    public Disjunction(Expression left, Expression right) {
         this.left = left;
         this.right = right;
     }
 
     @Override
     public String toString() {
-        String ret = "";
-        switch (type) {
-            case "conj":
-                ret = left.toString();
-                break;
-            case "disj":
-                ret = "(" + left.toString() + "|" + right.toString() + ")";
-                break;
-        }
-        return ret;
+        return "(" + left.toString() + "|" + right.toString() + ")";
+    }
+
+    public Expression getLeft() {
+        return left;
+    }
+
+    public Expression getRight() {
+        return right;
     }
 
     @Override
@@ -39,17 +34,14 @@ public class Disjunction extends Expression {
 
         Disjunction that = (Disjunction) o;
 
-        if (!type.equals(that.type)) return false;
-        if (!left.equals(that.left)) return false;
-        return right != null ? right.equals(that.right) : that.right == null;
+        return left.equals(that.left) && right.equals(that.right);
 
     }
 
     @Override
     public int hashCode() {
-        int result = type.hashCode();
-        result = 31 * result + left.hashCode();
-        result = 31 * result + (right != null ? right.hashCode() : 0);
+        int result = left.hashCode();
+        result = 31 * result + right.hashCode();
         return result;
     }
 }

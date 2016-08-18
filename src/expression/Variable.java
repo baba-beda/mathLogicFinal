@@ -19,7 +19,6 @@ public class Variable extends Expression {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
 
         Variable variable = (Variable) o;
 
@@ -29,8 +28,10 @@ public class Variable extends Expression {
 
     @Override
     public int hashCode() {
-        int result = super.hashCode();
-        result = 31 * result + value.hashCode();
-        return result;
+        return value.hashCode();
+    }
+
+    public String getValue() {
+        return value;
     }
 }

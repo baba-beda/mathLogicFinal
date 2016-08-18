@@ -125,7 +125,7 @@ public class LogicParser extends Parser {
 				{
 				setState(10);
 				((ExpressionContext)_localctx).disjunction = disjunction();
-				((ExpressionContext)_localctx).value =  new Expression("disj", ((ExpressionContext)_localctx).disjunction.value);
+				((ExpressionContext)_localctx).value =  ((ExpressionContext)_localctx).disjunction.value;
 				}
 				break;
 			case 2:
@@ -137,7 +137,7 @@ public class LogicParser extends Parser {
 				match(IMPLIES);
 				setState(15);
 				((ExpressionContext)_localctx).expression = expression();
-				((ExpressionContext)_localctx).value =  new Expression("impl", ((ExpressionContext)_localctx).disjunction.value, ((ExpressionContext)_localctx).expression.value);
+				((ExpressionContext)_localctx).value =  new Implication(((ExpressionContext)_localctx).disjunction.value, ((ExpressionContext)_localctx).expression.value);
 				}
 				break;
 			}
@@ -154,7 +154,7 @@ public class LogicParser extends Parser {
 	}
 
 	public static class DisjunctionContext extends ParserRuleContext {
-		public Disjunction value;
+		public Expression value;
 		public ConjunctionContext conjunction;
 		public DisjunctionContext disjunction;
 		public ConjunctionContext conjunction() {
@@ -195,7 +195,7 @@ public class LogicParser extends Parser {
 				{
 				setState(20);
 				((DisjunctionContext)_localctx).conjunction = conjunction();
-				((DisjunctionContext)_localctx).value =  new Disjunction("conj", ((DisjunctionContext)_localctx).conjunction.value);
+				((DisjunctionContext)_localctx).value =  ((DisjunctionContext)_localctx).conjunction.value;
 				}
 				break;
 			case 2:
@@ -207,7 +207,7 @@ public class LogicParser extends Parser {
 				match(OR);
 				setState(25);
 				((DisjunctionContext)_localctx).disjunction = disjunction();
-				((DisjunctionContext)_localctx).value =  new Disjunction("disj", ((DisjunctionContext)_localctx).conjunction.value, ((DisjunctionContext)_localctx).disjunction.value);
+				((DisjunctionContext)_localctx).value =  new Disjunction(((DisjunctionContext)_localctx).conjunction.value, ((DisjunctionContext)_localctx).disjunction.value);
 				}
 				break;
 			}
@@ -224,7 +224,7 @@ public class LogicParser extends Parser {
 	}
 
 	public static class ConjunctionContext extends ParserRuleContext {
-		public Conjunction value;
+		public Expression value;
 		public NegationContext negation;
 		public ConjunctionContext conjunction;
 		public NegationContext negation() {
@@ -265,7 +265,7 @@ public class LogicParser extends Parser {
 				{
 				setState(30);
 				((ConjunctionContext)_localctx).negation = negation();
-				((ConjunctionContext)_localctx).value =  new Conjunction("neg", ((ConjunctionContext)_localctx).negation.value);
+				((ConjunctionContext)_localctx).value =  ((ConjunctionContext)_localctx).negation.value;
 				}
 				break;
 			case 2:
@@ -277,7 +277,7 @@ public class LogicParser extends Parser {
 				match(AND);
 				setState(35);
 				((ConjunctionContext)_localctx).conjunction = conjunction();
-				((ConjunctionContext)_localctx).value =  new Conjunction("conj", ((ConjunctionContext)_localctx).negation.value, ((ConjunctionContext)_localctx).conjunction.value);
+				((ConjunctionContext)_localctx).value =  new Conjunction(((ConjunctionContext)_localctx).negation.value, ((ConjunctionContext)_localctx).conjunction.value);
 				}
 				break;
 			}
@@ -294,7 +294,7 @@ public class LogicParser extends Parser {
 	}
 
 	public static class NegationContext extends ParserRuleContext {
-		public Negation value;
+		public Expression value;
 		public VariableContext variable;
 		public NegationContext negation;
 		public ExpressionContext expression;
@@ -340,7 +340,7 @@ public class LogicParser extends Parser {
 				{
 				setState(40);
 				((NegationContext)_localctx).variable = variable();
-				((NegationContext)_localctx).value =  new Negation("var", ((NegationContext)_localctx).variable.value);
+				((NegationContext)_localctx).value =  ((NegationContext)_localctx).variable.value;
 				}
 				break;
 			case NOT:
@@ -350,7 +350,7 @@ public class LogicParser extends Parser {
 				match(NOT);
 				setState(44);
 				((NegationContext)_localctx).negation = negation();
-				((NegationContext)_localctx).value =  new Negation("neg", ((NegationContext)_localctx).negation.value);
+				((NegationContext)_localctx).value =  new Negation(((NegationContext)_localctx).negation.value);
 				}
 				break;
 			case OB:
@@ -362,7 +362,7 @@ public class LogicParser extends Parser {
 				((NegationContext)_localctx).expression = expression();
 				setState(49);
 				match(CB);
-				((NegationContext)_localctx).value =  new Negation("expr", ((NegationContext)_localctx).expression.value);
+				((NegationContext)_localctx).value =  ((NegationContext)_localctx).expression.value;
 				}
 				break;
 			default:
@@ -381,7 +381,7 @@ public class LogicParser extends Parser {
 	}
 
 	public static class VariableContext extends ParserRuleContext {
-		public Variable value;
+		public Expression value;
 		public Token VAR;
 		public TerminalNode VAR() { return getToken(LogicParser.VAR, 0); }
 		public VariableContext(ParserRuleContext parent, int invokingState) {
