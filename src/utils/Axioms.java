@@ -1,7 +1,17 @@
 package utils;
 
-import com.sun.istack.internal.Pool;
 import expression.*;
+import org.antlr.v4.runtime.ANTLRInputStream;
+import org.antlr.v4.runtime.CommonTokenStream;
+import org.antlr.v4.runtime.TokenStream;
+import parser.LogicLexer;
+import parser.LogicParser;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
 
 /**
  * Created by baba_beda on 8/18/16.
@@ -85,5 +95,83 @@ public class Axioms {
         }
 
         return false;
+    }
+    
+    private static Expression[] axioms = new Expression[10];
+    public static void parseAxioms() {
+        try (Scanner in = new Scanner(new File("rsc" + File.separator + "axioms"))) {
+            ANTLRInputStream is;
+            for (int i = 0; i < 10; i++) {
+                is = new ANTLRInputStream(in.next());
+                LogicLexer lexer = new LogicLexer(is);
+                TokenStream ts = new CommonTokenStream(lexer);
+                LogicParser parser = new LogicParser(ts);
+                axioms[i] = parser.expression().value;
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    static Expression getAxiom1(Expression alpha, Expression beta) {
+        Map<String, Expression> variables = new HashMap<>();
+        variables.put("A", alpha);
+        variables.put("B", beta);
+        return Substituter.substitute(axioms[0], variables);
+    }
+    static Expression getAxiom2(Expression alpha, Expression beta, Expression gamma) {
+        Map<String, Expression> variables = new HashMap<>();
+        variables.put("A", alpha);
+        variables.put("B", beta);
+        variables.put("C", gamma);
+        return Substituter.substitute(axioms[1], variables);
+    }
+    static Expression getAxiom3(Expression alpha, Expression beta) {
+        Map<String, Expression> variables = new HashMap<>();
+        variables.put("A", alpha);
+        variables.put("B", beta);
+        return Substituter.substitute(axioms[2], variables);
+    }
+    static Expression getAxiom4(Expression alpha, Expression beta) {
+        Map<String, Expression> variables = new HashMap<>();
+        variables.put("A", alpha);
+        variables.put("B", beta);
+        return Substituter.substitute(axioms[3], variables);
+    }
+    static Expression getAxiom5(Expression alpha, Expression beta) {
+        Map<String, Expression> variables = new HashMap<>();
+        variables.put("A", alpha);
+        variables.put("B", beta);
+        return Substituter.substitute(axioms[4], variables);
+    }
+    static Expression getAxiom6(Expression alpha, Expression beta) {
+        Map<String, Expression> variables = new HashMap<>();
+        variables.put("A", alpha);
+        variables.put("B", beta);
+        return Substituter.substitute(axioms[5], variables);
+    }
+    static Expression getAxiom7(Expression alpha, Expression beta) {
+        Map<String, Expression> variables = new HashMap<>();
+        variables.put("A", alpha);
+        variables.put("B", beta);
+        return Substituter.substitute(axioms[6], variables);
+    }
+    static Expression getAxiom8(Expression alpha, Expression beta, Expression gamma) {
+        Map<String, Expression> variables = new HashMap<>();
+        variables.put("A", alpha);
+        variables.put("B", beta);
+        variables.put("C", gamma);
+        return Substituter.substitute(axioms[7], variables);
+    }
+    static Expression getAxiom9(Expression alpha, Expression beta) {
+        Map<String, Expression> variables = new HashMap<>();
+        variables.put("A", alpha);
+        variables.put("B", beta);
+        return Substituter.substitute(axioms[8], variables);
+    }
+    static Expression getAxiom10(Expression alpha) {
+        Map<String, Expression> variables = new HashMap<>();
+        variables.put("A", alpha);
+        return Substituter.substitute(axioms[9], variables);
     }
 }

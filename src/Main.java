@@ -1,11 +1,6 @@
-import expression.Expression;
-import org.antlr.v4.runtime.*;
-import parser.LogicLexer;
-import parser.LogicParser;
 import utils.Axioms;
+import utils.Proofs;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 
 /**
@@ -13,13 +8,21 @@ import java.io.IOException;
  */
 public class Main {
     public static void main(String[] args) throws IOException {
-        ANTLRInputStream is = new ANTLRInputStream(new FileInputStream(new File("test.txt")));
-        LogicLexer lexer = new LogicLexer(is);
-        TokenStream ts = new CommonTokenStream(lexer);
-        LogicParser parser = new LogicParser(ts);
-        Expression res = parser.expression().value;
-        int a = Axioms.isAxiom(res);
-        System.out.println(res + " " + a);
-
+        Axioms.parseAxioms();
+        Proofs.parseProofs();
+        for (String arg : args) {
+            if (arg.equals("1")) {
+                System.out.println("Solving Task1");
+                Task1.solve();
+            }
+            if (arg.equals("2")) {
+                System.out.println("Solving Task2");
+                Task2.solve();
+            }
+            if (arg.equals("3")) {
+                System.out.println("Solving Task3");
+                Task3.solve();
+            }
+        }
     }
 }
