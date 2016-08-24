@@ -27,10 +27,6 @@ public class Main {
                 System.out.println("Solving Task4");
                 Task4.solve();
             }
-            if (arg.equals("8")) {
-                System.out.println("solving Task8");
-                Task8.solve();
-            }
         }
     }
 }
