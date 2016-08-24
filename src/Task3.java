@@ -5,7 +5,6 @@ import org.antlr.v4.runtime.TokenStream;
 import parser.LogicLexer;
 import parser.LogicParser;
 import utils.Annotator;
-import utils.Pair;
 import utils.Prover;
 
 import java.io.File;
@@ -34,6 +33,7 @@ class Task3 {
             if (proof != null) {
                 Annotator.getAnnotatedProof(proof, new HashSet<>()).forEach(out::println);
             }
+            out.close();
         }
         catch (FileNotFoundException e) {
             e.printStackTrace();

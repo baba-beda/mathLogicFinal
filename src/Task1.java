@@ -1,19 +1,18 @@
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.TokenStream;
-import parser.LogicLexer;
-import parser.LogicParser;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Scanner;
 import expression.*;
 import utils.Annotator;
+
+import parser.*;
 
 /**
  * Created by baba_beda on 8/18/16.

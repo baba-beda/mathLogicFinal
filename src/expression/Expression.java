@@ -14,24 +14,7 @@ import java.util.Set;
  */
 public class Expression {
     private Set<String> variables = new HashSet<>();
-    public Map<String, Integer> realVariables;
-
-
-    public boolean isImplication() {
-        return this instanceof Implication;
-    }
-
-    public boolean isDisjunction() {
-        return this instanceof Disjunction;
-    }
-
-    public boolean isConjunction() {
-        return this instanceof Conjunction;
-    }
-
-    public boolean isNegation() {
-        return this instanceof Negation;
-    }
+    private Map<String, Integer> realVariables;
 
     private Set<String> getVariables() {
         if (this instanceof Implication) {

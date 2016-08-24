@@ -1,18 +1,13 @@
 package expression;
 
 /**
- * Created by baba_beda on 8/17/16.
+ * Created by baba_beda on 8/24/16.
  */
-public class Negation extends Expression {
-    Expression inside;
+public class Next extends Expression {
+    private Expression inside;
 
-    public Negation(Expression inside) {
+    public Next(Expression inside) {
         this.inside = inside;
-    }
-
-    @Override
-    public String toString() {
-        return "!" + inside.toString();
     }
 
     public Expression getInside() {
@@ -20,13 +15,18 @@ public class Negation extends Expression {
     }
 
     @Override
+    public String toString() {
+        return "(" + inside.toString() + ")" + "\'";
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Negation negation = (Negation) o;
+        Next next = (Next) o;
 
-        return inside.equals(negation.inside);
+        return inside.equals(next.inside);
 
     }
 

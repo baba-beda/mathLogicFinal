@@ -3,8 +3,7 @@ import expression.Implication;
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.TokenStream;
-import parser.LogicLexer;
-import parser.LogicParser;
+import parser.*;
 import utils.*;
 
 import java.io.File;

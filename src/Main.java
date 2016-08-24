@@ -1,5 +1,5 @@
-import utils.Axioms;
-import utils.Proofs;
+
+import utils.*;
 
 import java.io.IOException;
 
@@ -22,6 +22,10 @@ public class Main {
             if (arg.equals("3")) {
                 System.out.println("Solving Task3");
                 Task3.solve();
+            }
+            if (arg.equals("4")) {
+                System.out.println("Solving Task4");
+                Task4.solve();
             }
         }
     }

@@ -18,7 +18,7 @@ public class Annotator {
         Map<Expression, Integer> expressionIndex = new HashMap<>();
         Map<Expression, HashSet<Integer>> alphaRequired = new HashMap<>();
         Map<Expression, Pair> mpPairs = new HashMap<>();
-        ArrayList<AnnotatedExpression> result = new ArrayList<>();
+        List<AnnotatedExpression> result = new ArrayList<>();
 
         for (int i = 0; i < proof.size(); i++) {
             Expression curExpr = proof.get(i);

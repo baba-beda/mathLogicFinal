@@ -1,7 +1,5 @@
 package expression;
 
-import utils.ExpressionType;
-
 /**
  * Created by baba_beda on 8/17/16.
  */

@@ -4,20 +4,20 @@ package parser;
 import expression.*;
 }
 
-expression returns [Expression value]   : disjunction                     {$value = $disjunction.value;}
-                                        | disjunction IMPLIES expression  {$value = new Implication($disjunction.value, $expression.value);};
+expression returns [Expression value] : d1=disjunction {$value = $d1.value;}
+                                      | d2=disjunction IMPLIES e=expression {$value = new Implication($d2.value, $e.value);};
 
-disjunction returns [Expression value] : conjunction                     {$value = $conjunction.value;}
-                                        | conjunction OR disjunction      {$value = new Disjunction($conjunction.value, $disjunction.value);};
+disjunction returns [Expression value] : c1=conjunction {$value = $c1.value;}
+                                       | d=disjunction OR c2=conjunction {$value = new Disjunction($d.value, $c2.value);};
 
-conjunction returns [Expression value] : negation                        {$value = $negation.value;}
-                                        | negation AND conjunction        {$value = new Conjunction($negation.value, $conjunction.value);};
+conjunction returns [Expression value] : n1=negation {$value = $n1.value;}
+                                       | c=conjunction AND n2=negation {$value = new Conjunction($c.value, $n2.value);};
 
-negation returns [Expression value]       : variable                        {$value = $variable.value;}
-                                        | NOT negation                    {$value = new Negation($negation.value);}
-                                        | OB expression CB                {$value = $expression.value;};
+negation returns [Expression value] : v=variable {$value = $v.value;}
+                                    | NOT n=negation {$value = new Negation($n.value);}
+                                    | OB e=expression CB {$value = $e.value;};
 
-variable returns [Expression value]       : VAR                             {$value = new Variable($VAR.text);};
+variable returns [Expression value] : VAR {$value = new Variable($VAR.text);};
 
 IMPLIES : '->';
 OR : '|';
