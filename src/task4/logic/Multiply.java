@@ -23,7 +23,7 @@ public class Multiply extends AbstractExpression implements Expression {
     }
 
     public String toString() {
-        return "(" + left + " * " + right + ")";
+        return "(" + left + "*" + right + ")";
     }
 
     public String toRPNString() {

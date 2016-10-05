@@ -96,21 +96,22 @@ public class Task4 {
                 for (int i = 0; i < proofStatements.size(); i++) {
                     AnnotatedStatement annotatedStatement = proofStatements.get(i);
                     Statement stmt = annotatedStatement.statement;
-                    out.print("" + (i + 1) + ") " + stmt + " ");
+                    //out.print("" + (i + 1) + ") " + stmt + " ");
+                    out.println(stmt);
                     if (annotatedStatement instanceof AnnotatedAssumption) {
-                        out.print("assumption " + (((AnnotatedAssumption) annotatedStatement).lineNo + 1) + "");
+                        //out.print("assumption " + (((AnnotatedAssumption) annotatedStatement).lineNo + 1) + "");
                     } else if (annotatedStatement instanceof AnnotatedAxiom) {
-                        out.print("axiom " + (((AnnotatedAxiom) annotatedStatement).axiomId + 1) + "");
+                        //out.print("axiom " + (((AnnotatedAxiom) annotatedStatement).axiomId + 1) + "");
                     }
                     if (annotatedStatement instanceof AnnotatedMP) {
                         AnnotatedMP mpStatement = (AnnotatedMP) annotatedStatement;
-                        out.print("MP " + (mpStatement.alpha + 1) + ", " + (mpStatement.beta + 1) + "");
+                        //out.print("MP " + (mpStatement.alpha + 1) + ", " + (mpStatement.beta + 1) + "");
                     }
                     if (annotatedStatement instanceof AnnotatedIR) {
                         AnnotatedIR irStatement = (AnnotatedIR) annotatedStatement;
-                        out.print("inference rule " + irStatement.ruleId + ", " + (irStatement.lineNo + 1) + "");
+                        //out.print("inference rule " + irStatement.ruleId + ", " + (irStatement.lineNo + 1) + "");
                     }
-                    out.println();
+                    //out.println();
                 }
             }
 

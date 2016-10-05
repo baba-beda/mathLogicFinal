@@ -56,7 +56,7 @@ public class Predicate extends AbstractStatement implements Statement {
             for (int i = 0; i < terms.size(); i++) {
                 str += terms.get(i);
                 if (i != terms.size() - 1) {
-                    str += ", ";
+                    str += ",";
                 }
             }
             str += ")";

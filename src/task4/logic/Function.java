@@ -46,7 +46,7 @@ public class Function extends AbstractExpression implements Expression {
             for (int i = 0; i < terms.size(); i++) {
                 str += terms.get(i);
                 if (i != terms.size() - 1) {
-                    str += ", ";
+                    str += ",";
                 }
             }
             str += ")";

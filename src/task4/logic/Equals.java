@@ -34,7 +34,7 @@ public class Equals extends AbstractStatement implements Statement {
     }
 
     public String toString() {
-        return "(" + left + " = " + right + ")";
+        return "(" + left + "=" + right + ")";
     }
 
     public String toRPNString() {

@@ -55,7 +55,7 @@ public abstract class BinOp extends AbstractStatement implements Statement {
     }
 
     public String toString() {
-        return "(" + left + " " + opCode + " " + right + ")";
+        return "(" + left  + opCode + right + ")";
     }
 
     public String toRPNString() {
