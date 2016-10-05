@@ -155,7 +155,7 @@ public class Prover {
             }
             if (inside instanceof Conjunction) {
                 boolean leftEst = evaluate(((Conjunction) inside).getLeft(), bitmask);
-                boolean rightEst = evaluate(((Conjunction) inside).getLeft(), bitmask);
+                boolean rightEst = evaluate(((Conjunction) inside).getRight(), bitmask);
                 if (leftEst) {
                     result.addAll(proveRecursively(((Conjunction) inside).getLeft(), context, bitmask));
                     if (!rightEst) {

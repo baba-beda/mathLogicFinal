@@ -125,8 +125,17 @@ public class PredicateParser {
             if (index < r && s.charAt(index) == '(' && s.charAt(r - 1) == ')') {
                 index++;
                 int prev = index;
+                boolean function = false;
                 for (int i = index; i < r; i++) {
-                    if (s.charAt(i) == ',' || i == r - 1) {
+                    if (s.charAt(i) == '(') {
+                        function = true;
+                    }
+                    if (function && s.charAt(i) == ')') {
+                        terms.add(term(prev, i + 1));
+                        prev = i + 2;
+                        function = false;
+                    }
+                    if ((!function && s.charAt(i) == ',' || i == r - 1) && prev < i) {
                         terms.add(term(prev, i));
                         prev = i + 1;
                     }
@@ -144,6 +153,7 @@ public class PredicateParser {
 
         throw new ParserException(s);
     }
+
 
     private Expression term(int l, int r) throws ParserException {
         int balance = 0;

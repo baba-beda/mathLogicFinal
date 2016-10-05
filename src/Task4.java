@@ -23,7 +23,7 @@ public class Task4 {
             List<Statement> context = new ArrayList<>();
             List<AnnotatedStatement> statements = new ArrayList<>();
 
-            String[] header = in.next().split("\\|-");
+            String[] header = in.nextLine().split("\\|-");
             String[] contextStr = commaSplit(header[0]);
 
             Statement expectedBeta = parser.parse(header[1]);
@@ -43,7 +43,7 @@ public class Task4 {
 
             // parse statements
             while (in.hasNext()) {
-                Statement stmt = parser.parse(in.next());
+                Statement stmt = parser.parse(in.nextLine());
                 statements.add(new Unannotated(stmt));
             }
 
